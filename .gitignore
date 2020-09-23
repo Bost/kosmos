@@ -5,3 +5,4 @@ out/
 .DS_Store
 .shadow-cljs
 .calva
+resources/public/js
