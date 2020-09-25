@@ -1,6 +1,5 @@
 (ns kosmos.list.core
-  (:require [reagent.dom :as rdom]
-            [garden.core :refer [css]]))
+  (:require [garden.core :refer [css]]))
 
 (def db
   {:nodes [{:value "def" :x 50 :y 50 :edges [{:from {:x 50 :y 50} :to {:x 80 :y 75}}
@@ -41,22 +40,9 @@
           :r 4}
    [:&:hover {:r 6}]])
 
-
 (defn app []
   (let [nodes (:nodes db)]
     [:div
      [:style (css styles)]
-     [:svg {:height 500}
+     [:svg {:height 500 :width 500}
       (map #(-> [node-with-edges %]) nodes)]]))
-
-;; Misc
-
-(defn app-element []
-  (.getElementById js/document "app"))
-
-(defn ^:dev/after-load mount []
-  (rdom/render [app] (app-element)))
-
-(defn start! []
-  (print "Started")
-  (mount))

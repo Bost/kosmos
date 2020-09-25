@@ -6,7 +6,8 @@
             [kosmos.fx]
             [kosmos.events]
             [re-frame.core :as rf]
-            [kosmos.io.clojure]))
+            [kosmos.io.clojure]
+            [kosmos.list.core :as kl]))
 
 (defn load [filename]
   (clj->js (cf/load filename)))
@@ -29,8 +30,13 @@
                            [node 140 50 "42" true]]]
      el)))
 
+(defn render-list-canvas []
+  (let [el (.getElementById js/document "app")]
+    (dom/render [kl/app] el)))
+
 (defn ^:dev/after-load start []
-  (when (enabled? :svg) (render-svg-canvas)))
+  (when (enabled? :svg) (render-svg-canvas))
+  (when (enabled? :svg-list) (render-list-canvas)))
 
 (defn start! [] 
   (rf/dispatch [:init])
