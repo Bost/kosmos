@@ -1,5 +1,5 @@
 (ns kosmos.electron
-  (:require ["electron" :refer [app BrowserWindow]]))
+  (:require [electron :refer [app BrowserWindow ipcMain dialog]]))
 
 (def window (atom nil))
 
@@ -7,8 +7,10 @@
 
 (def darwin? (= js/process.platform "darwin"))
 
+(.handle ipcMain "show-open-dialog" #(.showOpenDialog dialog))
+
 (defn create-window []
-  (let [options (clj->js {:width 800 :height 600})]
+  (let [options (clj->js {:width 800 :height 600 :webPreferences {:nodeIntegration true}})]
     (reset! window (BrowserWindow. options)))
   (.loadURL ^js/BrowserWindow @window index-url)
   (.on ^js/BrowserWindow @window "close" #(reset! window nil)))

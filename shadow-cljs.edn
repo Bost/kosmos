@@ -7,6 +7,7 @@
                  :main kosmos.electron/main}
           :app {:target :browser
                 :output-dir "resources/desktop/js"
+                :js-options {:js-provider :require}
                 :modules {:app {:init-fn kosmos.core/init!}}}
           :test {:target :node-test
                  :output-to "out/test/node.js"
