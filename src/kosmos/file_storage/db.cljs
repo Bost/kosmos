@@ -1,3 +1,3 @@
 (ns kosmos.file-storage.db)
 
-(def db {:fs {:current "" :files {}}})
+(def db {:fs {:path "" :content "" :ast {}}})

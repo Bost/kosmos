@@ -6,6 +6,7 @@
 (defn read-file [{:keys [path on-success on-failure]}]
   (try
     (->> (.readFileSync fs path)
+         (.toString)
          (conj on-success)
          (dispatch))
     (catch js/Object e

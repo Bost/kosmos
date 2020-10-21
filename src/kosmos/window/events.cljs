@@ -1,6 +1,5 @@
 (ns kosmos.window.events
-  (:require [cljs.pprint :as p]
-            [re-frame.core :refer [reg-event-fx]]))
+  (:require [re-frame.core :refer [reg-event-fx]]))
 
 (def js-path (js/require "path"))
 
@@ -17,12 +16,12 @@
 
 (defn open-file-read [_ [_ path content]]
   {:window/title (filename path)
-   :clojure/unpack {:content (.toString content)
-                    :on-success [:open-file/unpacked]
+   :clojure/unpack {:content content
+                    :on-success [:open-file/unpacked path content]
                     :on-failure [:open-file/failed]}})
 
-(defn open-file-unpacked [_ [_ ast]]
-  (p/pprint ast))
+(defn open-file-unpacked [_cofx [_ path content ast]]
+  {:dispatch [:fs/set-current-file path content ast]})
 
 ; TODO: handle failure case
 (defn open-file-failed [_ [_ _]]

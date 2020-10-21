@@ -19,4 +19,3 @@
               :load #(%2 {:lang :clj :source ""})
               :analyze-deps false}]
     (cljs/analyze-str state (wrap source) name opts #(-> % unwrap cb))))
-
