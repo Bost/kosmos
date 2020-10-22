@@ -5,7 +5,7 @@
 (defn unpack [{:keys [content on-success on-failure]}]
   (let [handler (fn [result]
                   (if (:value result)
-                    (dispatch (conj on-success result))
+                    (dispatch (conj on-success (:value result)))
                     (dispatch (conj on-failure result))))]
     (parse content handler)))
 

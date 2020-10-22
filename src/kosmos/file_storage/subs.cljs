@@ -11,3 +11,9 @@
  :<-[:fs/current-file]
  (fn [{:keys [content]} _]
    content))
+
+(reg-sub
+ :fs/current-file-ast
+ :<-[:fs/current-file]
+ (fn [{:keys [ast]} _]
+   ast))
