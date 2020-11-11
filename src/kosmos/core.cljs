@@ -6,7 +6,8 @@
             [kosmos.file-storage.events]
             [kosmos.file-storage.subs]
             [kosmos.window.core]
-            [kosmos.clojure.core]))
+            [kosmos.clojure.core]
+            [kosmos.canvas.views :refer [canvas]]))
 
 (reg-event-db :init #(merge % fs/db))
 
@@ -33,7 +34,7 @@
 (defn ^:dev/after-load start []
   (->> placeholder-id
        (.getElementById js/document)
-       (rdom/render [app])))
+       (rdom/render [canvas])))
 
 (defn init! []
   (dispatch [:init])

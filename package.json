@@ -12,7 +12,7 @@
     "test": "shadow-cljs compile test",
     "release": "shadow-cljs compile app && npm run electron:make",
     "watch": "shadow-cljs watch main app",
-    "electron:start": "electron-forge start",
+    "electron:start": "electron .",
     "electron:make": "electron-forge make",
     "icons:build": "(cd assets; ./build_icons.sh)",
     "icons:reset": "touch out/Kosmos-darwin-x64/Kosmos.app"
@@ -42,6 +42,7 @@
     "mousetrap": "^1.6.5",
     "nrepl-client": "0.3.0",
     "p5": "1.0.0",
+    "paper": "0.12.11",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "redux": "^4.0.5",
